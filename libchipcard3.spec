@@ -54,7 +54,7 @@ This package contains chipcard2-server-config and header files for
 writing drivers, services or even your own chipcard daemon for
 libchipcard.
 
-%description devel
+%description devel -l pl
 Ten pakiet zawiera skrypt chipcard2-server-config oraz pliki
 nag³ówkowe do pisania sterowników, us³ug, a nawet w³asnych demonów
 kart dla libchipcard.
