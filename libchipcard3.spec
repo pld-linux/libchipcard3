@@ -3,7 +3,7 @@
 %bcond_without	sysfs	# don't use sysfs to scan for ttyUSB
 #
 Summary:	A library for easy access to smart cards (chipcards)
-Summary(pl):	Biblioteka do ≥atwego dostÍpu do kart procesorowych
+Summary(pl.UTF-8):   Biblioteka do ≈Çatwego dostƒôpu do kart procesorowych
 Name:		libchipcard3
 Version:	3.0.0
 Release:	1
@@ -30,19 +30,19 @@ interfaces and has successfully been tested with Towitoko, Kobil, SCM,
 Orga, Omnikey and Reiner-SCT readers. This package contains the
 chipcard2 daemon needed to access card readers.
 
-%description -l pl
-libchipcard pozwala na ≥atwy dostÍp do kart procesorowych. Daje
-podstawowy dostÍp do kart pamiÍciowych i procesorowych, ma takøe
-specjaln± obs≥ugÍ niemieckich kart medycznych, niemieckich kart
-"GeldKarte" oraz kart HBCI (do homebankingu, zarÛwno typu 0 jak i 1).
-Z czytnikami komunikuje siÍ poprzez interfejs CTAPI lub IFD, by≥a
+%description -l pl.UTF-8
+libchipcard pozwala na ≈Çatwy dostƒôp do kart procesorowych. Daje
+podstawowy dostƒôp do kart pamiƒôciowych i procesorowych, ma tak≈ºe
+specjalnƒÖ obs≈Çugƒô niemieckich kart medycznych, niemieckich kart
+"GeldKarte" oraz kart HBCI (do homebankingu, zar√≥wno typu 0 jak i 1).
+Z czytnikami komunikuje siƒô poprzez interfejs CTAPI lub IFD, by≈Ça
 testowana z czytnikami Towitoko, Kobil, SCM, Orga, Omnikey i
-Reiner-SCT. Ten pakiet zawiera demona chipcard2 potrzebnego do dostÍpu
-do czytnikÛw kart.
+Reiner-SCT. Ten pakiet zawiera demona chipcard2 potrzebnego do dostƒôpu
+do czytnik√≥w kart.
 
 %package devel
 Summary:	libchipcard server development kit
-Summary(pl):	Pliki programistyczne serwera libchipcard
+Summary(pl.UTF-8):   Pliki programistyczne serwera libchipcard
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gwenhywfar-devel >= 2.3.0
@@ -54,9 +54,9 @@ This package contains chipcard2-server-config and header files for
 writing drivers, services or even your own chipcard daemon for
 libchipcard.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Ten pakiet zawiera skrypt chipcard2-server-config oraz pliki
-nag≥Ûwkowe do pisania sterownikÛw, us≥ug, a nawet w≥asnych demonÛw
+nag≈Ç√≥wkowe do pisania sterownik√≥w, us≈Çug, a nawet w≈Çasnych demon√≥w
 kart dla libchipcard.
 
 %prep
