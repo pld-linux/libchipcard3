@@ -3,7 +3,7 @@
 %bcond_without	sysfs	# don't use sysfs to scan for ttyUSB
 #
 Summary:	A library for easy access to smart cards (chipcards)
-Summary(pl.UTF-8):   Biblioteka do łatwego dostępu do kart procesorowych
+Summary(pl.UTF-8):	Biblioteka do łatwego dostępu do kart procesorowych
 Name:		libchipcard3
 Version:	3.0.0
 Release:	1
@@ -42,7 +42,7 @@ do czytników kart.
 
 %package devel
 Summary:	libchipcard server development kit
-Summary(pl.UTF-8):   Pliki programistyczne serwera libchipcard
+Summary(pl.UTF-8):	Pliki programistyczne serwera libchipcard
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gwenhywfar-devel >= 2.3.0
