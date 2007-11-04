@@ -2,17 +2,18 @@
 # Conditional build:
 %bcond_without	sysfs	# don't use sysfs to scan for ttyUSB
 #
+%define		beta	beta
 Summary:	A library for easy access to smart cards (chipcards)
 Summary(pl.UTF-8):	Biblioteka do łatwego dostępu do kart procesorowych
-Name:		libchipcard3
-Version:	3.0.3
-Release:	1
+Name:		libchipcard
+Version:	3.9.6
+Release:	0.%{beta}.1
 License:	GPL v2 with OpenSSL linking exception
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/libchipcard/%{name}-%{version}.tar.gz
-# Source0-md5:	fd3e044312f56422a0d874af4fcd02ab
+Source0:	http://dl.sourceforge.net/libchipcard/%{name}-%{version}%{beta}.tar.gz
+# Source0-md5:	4f032f988b846adcd6c960f74a6dae1c
 URL:		http://www.libchipcard.de/
-BuildRequires:	gwenhywfar-devel >= 2.3.0
+BuildRequires:	gwenhywfar-devel >= 2.9.8
 BuildRequires:	libusb-devel
 # disabled in sources
 #BuildRequires:	opensc-devel >= 0.9.4
@@ -60,7 +61,7 @@ nagłówkowe do pisania sterowników, usług, a nawet własnych demonów
 kart dla libchipcard.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{beta}
 
 %build
 %configure \
@@ -74,11 +75,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gwenhywfar/plugins/*/crypttoken/*.la
-mv -f $RPM_BUILD_ROOT%{_sysconfdir}/chipcard3/client/chipcardc3.conf{.default,}
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/chipcard3/client/chipcardc3.conf.example
-mv -f $RPM_BUILD_ROOT%{_sysconfdir}/chipcard3/server/chipcardd3.conf{.default,}
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/chipcard3/server/chipcardd3.conf.example
+rm -f $RPM_BUILD_ROOT%{_libdir}/gwenhywfar/plugins/*/ct/*.la
+mv -f $RPM_BUILD_ROOT%{_sysconfdir}/chipcard/client/chipcardc.conf{.default,}
+rm -f $RPM_BUILD_ROOT%{_sysconfdir}/chipcard/client/chipcardc.conf.example
+mv -f $RPM_BUILD_ROOT%{_sysconfdir}/chipcard/server/chipcardd.conf{.default,}
+rm -f $RPM_BUILD_ROOT%{_sysconfdir}/chipcard/server/chipcardd.conf.example
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,52 +90,52 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO doc/{CERTIFICATES,CONFIG,IPCCOMMANDS} etc/*.conf.*
-%attr(755,root,root) %{_bindir}/cardcommander3
-%attr(755,root,root) %{_bindir}/chipcard3-tool
-%attr(755,root,root) %{_bindir}/geldkarte3
-%attr(755,root,root) %{_bindir}/kvkcard3
-%attr(755,root,root) %{_bindir}/memcard3
-%attr(755,root,root) %{_sbindir}/chipcardd3
-%attr(755,root,root) %{_libdir}/libchipcard3c.so.*.*.*
-%attr(755,root,root) %{_libdir}/libchipcard3d.so.*.*.*
-%attr(755,root,root) %{_libdir}/libchipcard3_ctapi.so.*.*.*
-%dir %{_libdir}/chipcard3
-%dir %{_libdir}/chipcard3/server
-%dir %{_libdir}/chipcard3/server/drivers
-%{_libdir}/chipcard3/server/drivers/*.xml
-%attr(755,root,root) %{_libdir}/chipcard3/server/drivers/SKEL1
-%attr(755,root,root) %{_libdir}/chipcard3/server/drivers/ctapi
-%attr(755,root,root) %{_libdir}/chipcard3/server/drivers/ifd
-%dir %{_libdir}/chipcard3/server/lowlevel
-%dir %{_libdir}/chipcard3/server/services
-%{_libdir}/chipcard3/server/services/*.xml
-%attr(755,root,root) %{_libdir}/chipcard3/server/services/kvks
-%attr(755,root,root) %{_libdir}/gwenhywfar/plugins/*/crypttoken/*.so*
-%{_libdir}/gwenhywfar/plugins/*/crypttoken/*.xml
-%dir %{_datadir}/chipcard3
-%dir %{_datadir}/chipcard3/client
-%{_datadir}/chipcard3/client/apps
-%{_datadir}/chipcard3/client/cards
-%dir %{_datadir}/chipcard3/server
-%{_datadir}/chipcard3/server/drivers
-%dir %{_sysconfdir}/chipcard3
-%dir %{_sysconfdir}/chipcard3/client
-%dir %{_sysconfdir}/chipcard3/client/certs
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chipcard3/client/chipcardc3.conf
-%dir %{_sysconfdir}/chipcard3/server
-%dir %{_sysconfdir}/chipcard3/server/certs
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chipcard3/server/chipcardd3.conf
-# XXX: move to init.d?
-%attr(754,root,root) %{_sysconfdir}/chipcard3/server/chipcardd3
+%attr(755,root,root) %{_bindir}/cardcommander
+%attr(755,root,root) %{_bindir}/chipcard-tool
+%attr(755,root,root) %{_bindir}/geldkarte
+%attr(755,root,root) %{_bindir}/kvkcard
+%attr(755,root,root) %{_bindir}/memcard
+%attr(755,root,root) %{_sbindir}/chipcardd4
+%attr(755,root,root) %{_libdir}/libchipcardc.so.*.*.*
+%attr(755,root,root) %{_libdir}/libchipcardd.so.*.*.*
+%attr(755,root,root) %{_libdir}/libchipcard_ctapi.so.*.*.*
+%dir %{_libdir}/chipcard
+%dir %{_libdir}/chipcard/server
+%dir %{_libdir}/chipcard/server/drivers
+%{_libdir}/chipcard/server/drivers/*.xml
+%attr(755,root,root) %{_libdir}/chipcard/server/drivers/SKEL1
+%attr(755,root,root) %{_libdir}/chipcard/server/drivers/ctapi
+%attr(755,root,root) %{_libdir}/chipcard/server/drivers/ifd
+%dir %{_libdir}/chipcard/server/lowlevel
+%dir %{_libdir}/chipcard/server/services
+%{_libdir}/chipcard/server/services/*.xml
+%attr(755,root,root) %{_libdir}/chipcard/server/services/kvks
+%attr(755,root,root) %{_libdir}/gwenhywfar/plugins/*/ct/*.so*
+%{_libdir}/gwenhywfar/plugins/*/ct/*.xml
+%dir %{_datadir}/chipcard
+%dir %{_datadir}/chipcard/client
+%{_datadir}/chipcard/client/apps
+%{_datadir}/chipcard/client/cards
+%dir %{_datadir}/chipcard/server
+%{_datadir}/chipcard/server/drivers
+%dir %{_sysconfdir}/chipcard
+%dir %{_sysconfdir}/chipcard/client
+%dir %{_sysconfdir}/chipcard/client/certs
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chipcard/client/chipcardc.conf
+%dir %{_sysconfdir}/chipcard/server
+%dir %{_sysconfdir}/chipcard/server/certs
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/chipcard/server/chipcardd.conf
+# XXX: move to rc.d/init.d?
+%attr(754,root,root) %{_sysconfdir}/init.d/chipcardd
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/chipcard3-config
-%attr(755,root,root) %{_libdir}/libchipcard3c.so
-%attr(755,root,root) %{_libdir}/libchipcard3d.so
-%attr(755,root,root) %{_libdir}/libchipcard3_ctapi.so
-%{_libdir}/libchipcard3c.la
-%{_libdir}/libchipcard3d.la
-%{_libdir}/libchipcard3_ctapi.la
-%{_includedir}/chipcard3
-%{_aclocaldir}/chipcard3.m4
+%attr(755,root,root) %{_bindir}/chipcard-config
+%attr(755,root,root) %{_libdir}/libchipcardc.so
+%attr(755,root,root) %{_libdir}/libchipcardd.so
+%attr(755,root,root) %{_libdir}/libchipcard_ctapi.so
+%{_libdir}/libchipcardc.la
+%{_libdir}/libchipcardd.la
+%{_libdir}/libchipcard_ctapi.la
+%{_includedir}/chipcard
+%{_aclocaldir}/chipcard.m4
