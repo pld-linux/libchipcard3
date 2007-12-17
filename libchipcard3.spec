@@ -5,14 +5,19 @@
 Summary:	A library for easy access to smart cards (chipcards)
 Summary(pl.UTF-8):	Biblioteka do łatwego dostępu do kart procesorowych
 Name:		libchipcard3
-Version:	3.0.3
-Release:	2
+Version:	3.0.4
+Release:	0.1
 License:	GPL v2 with OpenSSL linking exception
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libchipcard/%{name}-%{version}.tar.gz
-# Source0-md5:	fd3e044312f56422a0d874af4fcd02ab
+# Source0-md5:	d6fc8e274a451e0b3936fa9d6326b865
+Patch0:		%{name}-visibility.patch
 URL:		http://www.libchipcard.de/
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake
 BuildRequires:	gwenhywfar-devel >= 2.3.0
+BuildRequires:	gwenhywfar-devel < 3.0.0
+BuildRequires:	libtool
 BuildRequires:	libusb-devel
 # disabled in sources
 #BuildRequires:	opensc-devel >= 0.9.4
@@ -61,8 +66,14 @@ kart dla libchipcard.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	%{!?with_sysfs:ac_cv_header_sysfs_libsysfs_h=no}
 
@@ -96,8 +107,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/memcard3
 %attr(755,root,root) %{_sbindir}/chipcardd3
 %attr(755,root,root) %{_libdir}/libchipcard3c.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libchipcard3c.so.0
 %attr(755,root,root) %{_libdir}/libchipcard3d.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libchipcard3d.so.0
 %attr(755,root,root) %{_libdir}/libchipcard3_ctapi.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libchipcard3_ctapi.so.0
 %dir %{_libdir}/chipcard3
 %dir %{_libdir}/chipcard3/server
 %dir %{_libdir}/chipcard3/server/drivers
