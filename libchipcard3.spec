@@ -6,7 +6,7 @@ Summary:	A library for easy access to smart cards (chipcards)
 Summary(pl.UTF-8):	Biblioteka do łatwego dostępu do kart procesorowych
 Name:		libchipcard3
 Version:	3.0.3
-Release:	1
+Release:	2
 License:	GPL v2 with OpenSSL linking exception
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libchipcard/%{name}-%{version}.tar.gz
