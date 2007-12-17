@@ -107,7 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/memcard3
 %attr(755,root,root) %{_sbindir}/chipcardd3
 %attr(755,root,root) %{_libdir}/libchipcard3c.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libchipcard3c.so.0
+%attr(755,root,root) %ghost %{_libdir}/libchipcard3c.so.1
 %attr(755,root,root) %{_libdir}/libchipcard3d.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libchipcard3d.so.0
 %attr(755,root,root) %{_libdir}/libchipcard3_ctapi.so.*.*.*
